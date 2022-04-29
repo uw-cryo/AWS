@@ -2,7 +2,7 @@
 
 For example, we'll create a bucket called s3://quinnsar in us-east-2 to use with [AWS Sagemaker Studio Lab](https://aws.amazon.com/sagemaker/studio-lab/)
 
-1. Ensure you're using the `poweruser` role to create resources:
+1. Activate the terraform environment and ensure you're using an AWS role with write permissions:
 ```
 conda activate tacoAWS
 source set_temporary_credentials.sh tacowrite 123456
