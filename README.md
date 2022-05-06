@@ -15,6 +15,7 @@ environment that includes command line utilities to execute code in this reposit
 In particular, we need `terraform` and the [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/)
 
 ```
+git clone https://github.com/uw-cryo/AWS.git
 cd AWS
 conda-lock install -p /Users/scott/miniconda3/envs/tacoAWS
 ```
