@@ -17,7 +17,7 @@ In particular, we need `terraform` and the [AWS Command Line Interface (CLI)](ht
 ```
 git clone https://github.com/uw-cryo/AWS.git
 cd AWS
-conda-lock install -p /Users/scott/miniconda3/envs/tacoAWS
+conda-lock install -p ${CONDA_PREFIX}/envs/tacoAWS
 ```
 NOTE: Change the prefix to wherever you have your conda environments installed. If you don't already have `conda-lock`, install it with `conda create -n condalock conda-lock mamba -c conda-forge`
 
