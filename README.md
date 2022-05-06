@@ -68,7 +68,7 @@ terraform workspace delete scott-incubator2022
 ⚠️ Everyone with sufficient AWS privileges can see, modify, and delete terraform-managed resources:
 ```
 terraform workspace list
-terraform select scotts-projectx
+terraform workspace select scotts-projectx
 terraform state list
 ```
 
