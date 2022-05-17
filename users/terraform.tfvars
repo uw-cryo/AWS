@@ -7,4 +7,5 @@ user = ["eric",
   "seth",
   "scott",
   "shashank",
+  "friedrich",
   "michelle"]
