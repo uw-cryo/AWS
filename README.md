@@ -15,10 +15,14 @@ environment that includes command line utilities to execute code in this reposit
 In particular, we need `terraform` and the [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/)
 
 ```
+git clone https://github.com/uw-cryo/AWS.git
 cd AWS
-conda-lock install -p /Users/scott/miniconda3/envs/tacoAWS
+conda-lock install -p ${CONDA_PREFIX}/envs/tacoAWS
+conda activate tacoAWS
 ```
 NOTE: Change the prefix to wherever you have your conda environments installed. If you don't already have `conda-lock`, install it with `conda create -n condalock conda-lock mamba -c conda-forge`
+
+NOTE: if packages aren't available from conda-forge, you can install binaries of [Terraform](https://www.terraform.io/downloads) [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
 ### AWS credentials
 
@@ -64,7 +68,7 @@ terraform workspace delete scott-incubator2022
 ⚠️ Everyone with sufficient AWS privileges can see, modify, and delete terraform-managed resources:
 ```
 terraform workspace list
-terraform select scotts-projectx
+terraform workspace select scotts-projectx
 terraform state list
 ```
 
