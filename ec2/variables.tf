@@ -10,8 +10,18 @@ variable "region" {
   default     = "us-west-2"
 }
 
+variable "ssh-key-name" {
+  description = "Name for SSH key (e.g. scottskey)"
+  type        = string
+}
+
 variable "ssh-public-key" {
   description = "Public key to connect to EC2 instance via SSH"
   type        = string
-  default     = ""
+}
+
+variable "disk_size" {
+  description = "EBS Volume disk size (GB)"
+  type        = number
+  default     = 50
 }

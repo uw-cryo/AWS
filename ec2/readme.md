@@ -17,12 +17,18 @@ terraform apply -var-file="terraform.tfvars"
 1. Enter public SSH Key
 https://git-scm.com/book/it/v2/Git-on-the-Server-Generating-Your-SSH-Public-Key
 
-1. Connect via ssh:
+1. Connect via ssh (pass *private* key and use public IP output by terraform)
 ```
-ssh -i "~/.ssh/id_rsa.pub" <PUBLIC IP>
+ssh -i ~/.ssh/id_rsa ubuntu@35.89.127.177
 ```
 
-1. Delete it
+1. Temporarily stop and restart instance (instance ID output by terraform)
+```
+aws ec2 stop-instances --instance-ids i-01dbfdeb77a94eee3
+aws ec2 start-instances --instance-ids i-01dbfdeb77a94eee3
+```
+
+1. Completely delete it (and all attached drives)
 
 If you don't need to keep the bucket around, first empty it, then destroy with terraform:
 ```
