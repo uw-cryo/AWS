@@ -23,7 +23,7 @@ terraform destroy
 # Usage
 
 ```
-aws sts assume-role --role-arn arn:aws:iam::118211588532:role/sliderule-write  --role-session-name sliderule-write-scott > /tmp/tmpcreds.txt
+aws sts assume-role --role-arn arn:aws:iam::118211588532:role/sliderule-write --duration-seconds 43200  --role-session-name sliderule-write-scott > /tmp/tmpcreds.txt
 
 # NOTE: by default credentials reported back expire in 1 hour:
 export AWS_REGION="us-west-2"

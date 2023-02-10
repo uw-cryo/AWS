@@ -17,7 +17,7 @@ module "s3_bucket_sliderule" {
   bucket  = var.bucket_name
 
   lifecycle_rule = [{
-    id = "scratch"
+    id      = "scratch"
     enabled = true
     expiration = {
       days = 7
@@ -31,12 +31,14 @@ module "s3_bucket_sliderule" {
 }
 
 module "iam_iam-assumable-role_sliderule-write" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "~> 5"
+  source      = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
+  version     = "~> 5"
   create_role = true
-  role_requires_mfa = false
-  trusted_role_arns = [data.aws_caller_identity.current.account_id]
-  role_name         = "sliderule-write"
+  # AWS Max is 12 hours
+  max_session_duration = 43200
+  role_requires_mfa    = false
+  trusted_role_arns    = [data.aws_caller_identity.current.account_id]
+  role_name            = "sliderule-write"
   custom_role_policy_arns = [
     module.iam_policy_write.arn
   ]
@@ -58,6 +60,15 @@ module "iam_policy_write" {
       {
         "Effect" : "Allow",
         "Action" : [
+          "s3:ListBucket"
+        ],
+        "Resource" : [
+          "arn:aws:s3:::${var.bucket_name}"
+        ]
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
           "s3:PutObject"
         ],
         "Resource" : [
@@ -69,12 +80,13 @@ module "iam_policy_write" {
 }
 
 module "iam_iam-assumable-role_sliderule-read" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
-  version = "~> 5"
-  create_role = true
-  role_requires_mfa = false
-  trusted_role_arns = [data.aws_caller_identity.current.account_id]
-  role_name         = "sliderule-read"
+  source               = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
+  version              = "~> 5"
+  create_role          = true
+  max_session_duration = 43200
+  role_requires_mfa    = false
+  trusted_role_arns    = [data.aws_caller_identity.current.account_id]
+  role_name            = "sliderule-read"
   custom_role_policy_arns = [
     module.iam_policy_read.arn
   ]
