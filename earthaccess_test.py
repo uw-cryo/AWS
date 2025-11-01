@@ -9,26 +9,26 @@ auth = earthaccess.login(strategy="environment")
 # Very basic example:
 #
 # ValueError: We cannot open S3 links when we are not in-region, try using HTTPS links
-#s3url_atl23 = 's3://nsidc-cumulus-prod-protected/ATLAS/ATL23/001/2023/03/01/ATL23_20230401000000_10761801_001_01.h5'
-#fileobjects = earthaccess.open([s3url_atl23])
-#print(fileobjects)
+s3url_atl23 = 's3://nsidc-cumulus-prod-protected/ATLAS/ATL23/001/2023/03/01/ATL23_20230401000000_10761801_001_01.h5'
+fileobjects = earthaccess.open([s3url_atl23], provider='NSIDC_CPRD')
+print(fileobjects)
 
 # Quickstart Example:
 # https://earthaccess.readthedocs.io/en/stable/quick-start/
 
-# Does this return s3 links?
-results = earthaccess.search_data(
-    short_name='ATL06',
-    bounding_box=(-10, 20, 10, 50),
-    temporal=("1999-02", "2019-03"),
-    cloud_hosted=True,
-    count=1
-)
-# Let's print our datasets
-print(results[0])
+# Does this return s3 links if searching in-region?
+# results = earthaccess.search_data(
+#     short_name='ATL06',
+#     bounding_box=(-10, 20, 10, 50),
+#     temporal=("1999-02", "2019-03"),
+#     cloud_hosted=True,
+#     count=1
+# )
+# # Let's print our datasets
+# print(results[0])
 
-fileobjects = earthaccess.open(results)
-ds = xr.open_dataset(fileobjects[0])
+# fileobjects = earthaccess.open(results)
+# ds = xr.open_dataset(fileobjects[0])
 
 # files = earthaccess.download(results, "/tmp/local_folder")
 
