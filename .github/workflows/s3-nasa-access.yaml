@@ -7,7 +7,9 @@ jobs:
   test:
     runs-on: runs-on=${{ github.run_id }}/runner=2cpu-linux-arm64
     env:
-        EARTHDATA_TOKEN: ${{ secrets.EARTHDATA_TOKEN }}
+        #EARTHDATA_TOKEN: ${{ secrets.EARTHDATA_TOKEN }}
+        EARTHDATA_USERNAME: ${{ secrets.EARTHDATA_USERNAME }}
+        EARTHDATA_PASSWORD: ${{ secrets.EARTHDATA_PASSWORD }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
